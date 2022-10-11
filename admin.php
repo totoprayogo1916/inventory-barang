@@ -1,8 +1,8 @@
-<?php  
-    if (isset($_GET['hapus'])) {
-        $admin->hapus_admin($_GET['hapus']);
-        echo "<script>location='index.php?page=admin';</script>";
-    }
+<?php
+if (isset($_GET['hapus'])) {
+    $admin->hapus_admin($_GET['hapus']);
+    echo "<script>location='index.php?page=admin';</script>";
+}
 ?>
 <div class="row">
     <div class="col-md-12">
@@ -25,27 +25,28 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php  
+                            <?php
                                 $adm = $admin->tampil_admin();
-                                foreach ($adm as $index => $data) {
-                            ?>
+
+foreach ($adm as $index => $data) {
+    ?>
                             <tr class="odd gradeX">
-                                <td><?php echo $index + 1; ?></td>
-                                <td><?php echo $data['nama']; ?></td>
-                                <td><?php echo $data['email']; ?></td>
-                                <td><?php echo $data['password']; ?></td>
+                                <td><?= $index + 1; ?></td>
+                                <td><?= $data['nama']; ?></td>
+                                <td><?= $data['email']; ?></td>
+                                <td><?= $data['password']; ?></td>
                                 <td>
-                                    <img src="gambar_admin/<?php echo $data['gambar']; ?>" width="90">
+                                    <img src="gambar_admin/<?= $data['gambar']; ?>" width="90">
                                 </td>
                                 <td>
-                                    <a href="index.php?page=ubahadmin&id=<?php echo $data['kd_admin']; ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit</a>
-                                    <a href="index.php?page=admin&hapus=<?php echo $data['kd_admin']; ?>" class="btn btn-danger btn-xs" id="alertHapus"><i class="fa fa-trash"></i> Hapus</a>
+                                    <a href="index.php?page=ubahadmin&id=<?= $data['kd_admin']; ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit</a>
+                                    <a href="index.php?page=admin&hapus=<?= $data['kd_admin']; ?>" class="btn btn-danger btn-xs" id="alertHapus"><i class="fa fa-trash"></i> Hapus</a>
                                 </td>
                             </tr>
                             <?php } ?>
                         </tbody>
                     </table>
-                </div>   
+                </div>
             </div>
             <div class="panel-footer">
                 <a href="index.php?page=tambahadmin" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Admin</a>

@@ -27,12 +27,12 @@
 		<div class="panel panel-default">
 			<div class="panel-heading" align="center">
 				<?php if (isset($_POST['prosess'])): ?>
-					<a href="laporan/cetaklaporanpenjualan.php?tgl1=<?php echo $_POST['tgl1']; ?>&tgl2=<?php echo $_POST['tgl2']; ?>" target="_BLANK" class="btn btn-info"><i class="fa fa-print"></i> Cetak</a>
+					<a href="laporan/cetaklaporanpenjualan.php?tgl1=<?= $_POST['tgl1']; ?>&tgl2=<?= $_POST['tgl2']; ?>" target="_BLANK" class="btn btn-info"><i class="fa fa-print"></i> Cetak</a>
 				<?php endif ?>
 				<?php if (isset($_POST['semua'])): ?>
 					<a href="laporan/cetaklaporanpenjualan.php?semua" target="_BLANK" class="btn btn-info"><i class="fa fa-print"></i> Cetak</a>
 				<?php endif ?>
-				<?php if (!isset($_POST['prosess']) && !isset($_POST['semua'])): ?>
+				<?php if (! isset($_POST['prosess']) && ! isset($_POST['semua'])): ?>
 					<a href="#" class="btn btn-info" disabled="disabled"><i class="fa fa-print"></i> Cetak</a>
 				<?php endif ?>
 			</div>
@@ -51,71 +51,69 @@
 						</tr>
 					</thead>
 					<tbody>
-					<?php  
-						if (isset($_POST['prosess'])) {
-							$total = $laporan->hitung_total_penjualan_bulan($_POST['tgl1'],$_POST['tgl2']);
-							$cek = $laporan->cek_penjualan_bulan($_POST['tgl1'],$_POST['tgl2']);
-							if ($cek === false) {
-								echo "<tr><td colspan='8' align='center'>Data Kososng</td></tr>";
-							}
-							else{
-							$lapbl = $laporan->tampil_penjualan_bulan($_POST['tgl1'],$_POST['tgl2']);
-							foreach ($lapbl as $index => $data) {
-					?>
+					<?php
+                        if (isset($_POST['prosess'])) {
+                            $total = $laporan->hitung_total_penjualan_bulan($_POST['tgl1'], $_POST['tgl2']);
+                            $cek   = $laporan->cek_penjualan_bulan($_POST['tgl1'], $_POST['tgl2']);
+                            if ($cek === false) {
+                                echo "<tr><td colspan='8' align='center'>Data Kososng</td></tr>";
+                            } else {
+                                $lapbl = $laporan->tampil_penjualan_bulan($_POST['tgl1'], $_POST['tgl2']);
+
+                                foreach ($lapbl as $index => $data) {
+                                    ?>
 						<tr>
-							<td><?php echo $index + 1; ?></td>
-							<td><?php echo $data['kd_penjualan']; ?></td>
-							<td><?php echo date_format(date_create($data['tgl_penjualan']),'d-m-Y'); ?></td>
-							<td><?php echo $data['nama_barang']; ?></td>
-							<td><?php echo $data['satuan']; ?></td>
-							<td><?php echo $data['jumlah']; ?></td>
-							<td>Rp. <?php echo number_format($data['harga_jual']); ?></td>
-							<td>Rp. <?php echo number_format($data['subtotal']); ?></td>
+							<td><?= $index + 1; ?></td>
+							<td><?= $data['kd_penjualan']; ?></td>
+							<td><?= date_format(date_create($data['tgl_penjualan']), 'd-m-Y'); ?></td>
+							<td><?= $data['nama_barang']; ?></td>
+							<td><?= $data['satuan']; ?></td>
+							<td><?= $data['jumlah']; ?></td>
+							<td>Rp. <?= number_format($data['harga_jual']); ?></td>
+							<td>Rp. <?= number_format($data['subtotal']); ?></td>
 						</tr>
 					<?php
-						}
-					?>
+                                }
+                                ?>
 					<?php
-						}?>
-						<tr>
-							<td colspan="7" align="center">TOTAL</td>
-							<td>Rp. <?php echo number_format($total); ?></td>
-						</tr>
-					<?php
-					}
-						elseif (isset($_POST['semua'])) {
-							$total = $laporan->hitung_total_penjualan();
-							$cek = $laporan->cek_penjualan();
-							if ($cek === false) {
-								echo "<tr><td colspan='8' align='center'>Data Kososng</td></tr>";
-							}
-							else{
-							$lap = $laporan->tampil_penjualan();
-							foreach ($lap as $index => $data) {
-					?>
-						<tr>
-							<td><?php echo $index + 1; ?></td>
-							<td><?php echo $data['kd_penjualan']; ?></td>
-							<td><?php echo date_format(date_create($data['tgl_penjualan']),'d-m-Y'); ?></td>
-							<td><?php echo $data['nama_barang']; ?></td>
-							<td><?php echo $data['satuan']; ?></td>
-							<td><?php echo $data['jumlah']; ?></td>
-							<td>Rp. <?php echo number_format($data['harga_jual']); ?></td>
-							<td>Rp. <?php echo number_format($data['subtotal']); ?></td>
-						</tr>
-					<?php
-						}
-					?>
-					<?php
-						}?>
+                            }?>
 						<tr>
 							<td colspan="7" align="center">TOTAL</td>
-							<td>Rp. <?php echo number_format($total); ?></td>
+							<td>Rp. <?= number_format($total); ?></td>
 						</tr>
 					<?php
-						}
-						else{
-					?>
+                        } elseif (isset($_POST['semua'])) {
+                            $total = $laporan->hitung_total_penjualan();
+                            $cek   = $laporan->cek_penjualan();
+                            if ($cek === false) {
+                                echo "<tr><td colspan='8' align='center'>Data Kososng</td></tr>";
+                            } else {
+                                $lap = $laporan->tampil_penjualan();
+
+                                foreach ($lap as $index => $data) {
+                                    ?>
+						<tr>
+							<td><?= $index + 1; ?></td>
+							<td><?= $data['kd_penjualan']; ?></td>
+							<td><?= date_format(date_create($data['tgl_penjualan']), 'd-m-Y'); ?></td>
+							<td><?= $data['nama_barang']; ?></td>
+							<td><?= $data['satuan']; ?></td>
+							<td><?= $data['jumlah']; ?></td>
+							<td>Rp. <?= number_format($data['harga_jual']); ?></td>
+							<td>Rp. <?= number_format($data['subtotal']); ?></td>
+						</tr>
+					<?php
+                                }
+                                ?>
+					<?php
+                            }?>
+						<tr>
+							<td colspan="7" align="center">TOTAL</td>
+							<td>Rp. <?= number_format($total); ?></td>
+						</tr>
+					<?php
+                        } else {
+                            ?>
 						<tr>
 							<td colspan="8" align="center">Pilih Opsi Tampil</td>
 						</tr>
@@ -124,8 +122,8 @@
 							<td></td>
 						</tr>
 					<?php
-						}
-					?>
+                        }
+				?>
 					</tbody>
 				</table>
 			</div>

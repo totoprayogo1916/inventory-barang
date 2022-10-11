@@ -1,6 +1,6 @@
 <?php
-	include "../class/class.php";
-	$tam = $nota->ambil_nota_penjualan($_GET['kdpenjualan']);
+include '../class/class.php';
+$tam = $nota->ambil_nota_penjualan($_GET['kdpenjualan']);
 ?>
 
 <style type="text/css">
@@ -54,13 +54,13 @@
           <tr>
             <td width="11%" height="18" class="style9">Nomor </td>
             <td width="1%" class="style9"><div align="center">:</div></td>
-            <td width="14%" class="style9"><?php echo $tam['kd_penjualan']; ?></td>
+            <td width="14%" class="style9"><?= $tam['kd_penjualan']; ?></td>
           </tr>
           <tr>
             <td class="style9">Tanggal</td>
             <td><div align="center">:</div></td>
             <td><span class="style9">
-              <?php echo date_format(date_create($tam['tgl_penjualan']),'d-m-Y');?>
+              <?= date_format(date_create($tam['tgl_penjualan']), 'd-m-Y'); ?>
             </span></td>
           </tr>
         </table>
@@ -72,7 +72,7 @@
   <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0">
     <tr>
       <td colspan="7">
-      <hr />      
+      <hr />
       </td>
     </tr>
     <tr>
@@ -89,17 +89,18 @@
       <hr />      </td>
       </tr>
       <?php
-      	$tampil = $nota->tampil_nota_penjualan($_GET['kdpenjualan']);
-		foreach ($tampil as $index => $data){	
-	  ?>
+          $tampil = $nota->tampil_nota_penjualan($_GET['kdpenjualan']);
+
+foreach ($tampil as $index => $data) {
+    ?>
       <tr>
-        <td class="style9" align="center"><?php echo $index + 1;?>.</td>
-        <td class="style9"><?php echo $data['kd_barang'];?></td>
-        <td class="style9"><?php echo $data['nama_barang'];?></td>
-        <td class="style9" align="left"><?php echo $data['satuan'];?></td>
-        <td class="style9" align="left"><?php echo $data['jumlah'];?></td>
-        <td class="style9" align="left">Rp. <?php echo number_format($data['harga_jual']);?></td>
-        <td class="style9" align="right">Rp. <?php echo number_format($data['subtotal']);?></td>
+        <td class="style9" align="center"><?= $index + 1; ?>.</td>
+        <td class="style9"><?= $data['kd_barang']; ?></td>
+        <td class="style9"><?= $data['nama_barang']; ?></td>
+        <td class="style9" align="left"><?= $data['satuan']; ?></td>
+        <td class="style9" align="left"><?= $data['jumlah']; ?></td>
+        <td class="style9" align="left">Rp. <?= number_format($data['harga_jual']); ?></td>
+        <td class="style9" align="right">Rp. <?= number_format($data['subtotal']); ?></td>
       </tr>
       <?php }?>
       <tr>
@@ -107,34 +108,34 @@
       <hr />      </td>
       </tr>
   </table>
- 
+
   <table width="98%" align="center">
-   
+
     <tr>
       <td colspan="6" align="right" class="st_total">TOTAL</td>
-      <td width="200" align="right"><div id="total" class="st_total" align="right">Rp. 
-      <?php echo number_format($tam['total_penjualan']); ?>
+      <td width="200" align="right"><div id="total" class="st_total" align="right">Rp.
+      <?= number_format($tam['total_penjualan']); ?>
       </div></td>
     </tr>
     <tr>
       <td colspan="6" align="right" class="st_total">DIBAYAR</td>
-      <td width="200" align="right"><div id="total" class="st_total" align="right">Rp. 
-      <?php echo number_format($tam['dibayar']); ?>
+      <td width="200" align="right"><div id="total" class="st_total" align="right">Rp.
+      <?= number_format($tam['dibayar']); ?>
       </div></td>
     </tr>
-    <?php  
-      $kembali = $tam['dibayar'] - $tam['total_penjualan'];
-    ?>
+    <?php
+    $kembali = $tam['dibayar'] - $tam['total_penjualan'];
+?>
     <tr>
       <td colspan="6" align="right" class="st_total">KEMBALI</td>
-      <td width="200" align="right"><div id="total" class="st_total" align="right">Rp. 
-      <?php echo number_format($kembali); ?>
+      <td width="200" align="right"><div id="total" class="st_total" align="right">Rp.
+      <?= number_format($kembali); ?>
       </div></td>
     </tr>
 
 
   </table>
-  
+
    <table width="98%" border="0" align="center">
    <tr>
      <td colspan="3">&nbsp;</td>
@@ -142,7 +143,7 @@
      <td colspan="3">&nbsp;</td>
    </tr>
    <tr>
-     <td colspan="3"><div align="center" class="style9"><?php echo $tam['nama']; ?></div></td>
+     <td colspan="3"><div align="center" class="style9"><?= $tam['nama']; ?></div></td>
      <td colspan="3">&nbsp;</td>
      <td colspan="3"></td>
    </tr>

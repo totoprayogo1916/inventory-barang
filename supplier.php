@@ -1,8 +1,8 @@
-<?php  
-    if (isset($_GET['hapus'])) {
-        $supplier->hapus_supplier($_GET['hapus']);
-        echo "<script>location='index.php?page=supplier';</script>";
-    }
+<?php
+if (isset($_GET['hapus'])) {
+    $supplier->hapus_supplier($_GET['hapus']);
+    echo "<script>location='index.php?page=supplier';</script>";
+}
 ?>
 <div class="row">
     <div class="col-md-12">
@@ -23,23 +23,24 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php  
+                            <?php
                                 $sp = $supplier->tampil_supplier();
-                                foreach ($sp as $index => $data) {
-                            ?>
+
+foreach ($sp as $index => $data) {
+    ?>
                             <tr class="odd gradeX">
-                                <td><?php echo $index + 1; ?></td>
-                                <td><?php echo $data['nama_supplier']; ?></td>
-                                <td><?php echo $data['alamat']; ?></td>
+                                <td><?= $index + 1; ?></td>
+                                <td><?= $data['nama_supplier']; ?></td>
+                                <td><?= $data['alamat']; ?></td>
                                 <td>
-                                    <a href="index.php?page=ubahsupplier&id=<?php echo $data['kd_supplier']; ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit</a>
-                                    <a href="index.php?page=supplier&hapus=<?php echo $data['kd_supplier']; ?>" class="btn btn-danger btn-xs" id="alertHapus"><i class="fa fa-trash"></i> Hapus</a>
+                                    <a href="index.php?page=ubahsupplier&id=<?= $data['kd_supplier']; ?>" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit</a>
+                                    <a href="index.php?page=supplier&hapus=<?= $data['kd_supplier']; ?>" class="btn btn-danger btn-xs" id="alertHapus"><i class="fa fa-trash"></i> Hapus</a>
                                 </td>
                             </tr>
                             <?php } ?>
                         </tbody>
                     </table>
-                </div>   
+                </div>
             </div>
             <div class="panel-footer">
                 <a href="index.php?page=tambahsupplier" class="btn btn-success"><i class="fa fa-plus"></i> Tambah Supplier</a>

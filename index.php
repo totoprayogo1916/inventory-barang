@@ -1,18 +1,18 @@
 <?php
-  include 'class/class.php';
-  error_reporting(0);
-  if (empty($_SESSION['login_admin'])) {
+include 'class/class.php';
+error_reporting(0);
+if (empty($_SESSION['login_admin'])) {
     echo "<script>
     alert('Anda Belum Login!');
       window.location='login/index.php';
     </script>";
+}
+function tglIndonesia($str)
+{
+    $tr = trim($str);
 
-  }
-  function tglIndonesia($str){
-    $tr   = trim($str);
-    $str    = str_replace(array('Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'), array('Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum\'at', 'Sabtu', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'), $tr);
-    return $str;
-  } 
+    return str_replace(['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'], ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum\'at', 'Sabtu', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'], $tr);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,26 +41,26 @@
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
           <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
-            <span class="icon-bar"></span>    
+            <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="index.php">Inventory Admin</a> 
+        <a class="navbar-brand" href="index.php">Inventory Admin</a>
       </div>
-      <div style="color: white;padding: 15px 20px 15px 20px;float: right;font-size: 16px;"> 
-        <span style="margin-right:20px"><?php echo tglIndonesia(date('D, d F, Y')); ?></span>
-        <a href="index.php?page=logout" class="btn btn-danger square-btn-adjust">Logout</a> 
+      <div style="color: white;padding: 15px 20px 15px 20px;float: right;font-size: 16px;">
+        <span style="margin-right:20px"><?= tglIndonesia(date('D, d F, Y')); ?></span>
+        <a href="index.php?page=logout" class="btn btn-danger square-btn-adjust">Logout</a>
       </div>
-    </nav>   
+    </nav>
 <!-- /. NAV TOP  -->
     <nav class="navbar-default navbar-side" role="navigation">
       <div class="sidebar-collapse">
         <ul class="nav" id="main-menu">
           <li class="text-center">
-            <img src="gambar_admin/<?php echo $_SESSION['login_admin']['gambar']; ?>" class="user-image img-circle img-responsive"/>
+            <img src="gambar_admin/<?= $_SESSION['login_admin']['gambar']; ?>" class="user-image img-circle img-responsive"/>
           </li>
           <li>
             <a  class="active-menu" href="index.php"><i class="fa fa-dashboard"></i> Dashboard</a>
-          </li> 
+          </li>
           <li>
             <a  href="#"><i class="fa fa-money"></i> Pembelian<span class="fa arrow"></span></a>
             <ul class="nav nav-second-level">
@@ -117,79 +117,59 @@
               </li>
             </ul>
           </li>
-      </div>      
-    </nav>  
+      </div>
+    </nav>
     <!-- /. NAV SIDE  -->
     <div id="page-wrapper">
       <div id="page-inner">
-        <?php  
+        <?php
           if (isset($_GET['page'])) {
-            if ($_GET['page']=="admin") {
-              include 'admin.php';
-            }
-            elseif ($_GET['page']=="tambahadmin") {
-              include 'tambahadmin.php';
-            }
-            elseif ($_GET['page']=="ubahadmin") {
-              include 'ubahadmin.php';
-            }
-            elseif ($_GET['page']=="barang") {
-              include 'barang.php';
-            }
-            elseif ($_GET['page']=="tambahbarang") {
-              include 'tambahbarang.php';
-            }
-            elseif ($_GET['page']=="ubahbarang") {
-              include 'ubahbarang.php';
-            }
-            elseif ($_GET['page']=="supplier") {
-              include 'supplier.php';
-            }
-            elseif ($_GET['page']=="tambahsupplier") {
-              include 'tambahsupplier.php';
-            }
-            elseif ($_GET['page']=="ubahsupplier") {
-              include 'ubahsupplier.php';
-            }
-            elseif ($_GET['page']=="pembelian") {
-              include 'pembelian.php';
-            }
-            elseif ($_GET['page']=="tambahpembelian") {
-              include 'tambahpembelian.php';
-            }
-            elseif ($_GET['page']=="barangpembelian") {
-              include 'barangpembelian.php';
-            }
-            elseif ($_GET['page']=="simpanbaranggudang") {
-              include 'simpanbaranggudang.php';
-            }
-            elseif ($_GET['page']=="penjualan") {
-              include 'penjualan.php';
-            }
-            elseif ($_GET['page']=="tambahpenjualan") {
-              include 'tambahpenjualan.php';
-            }
-            elseif ($_GET['page']=="laporanpenjualan") {
-              include 'laporanpenjualan.php';
-            }
-            elseif ($_GET['page']=="laporanpembelian") {
-              include 'laporanpembelian.php';
-            }
-            elseif ($_GET['page']=="laporanprofit") {
-              include 'laporanprofit.php';
-            }
-            elseif ($_GET['page']=="perusahaan") {
-              include 'perusahaan.php';
-            }
-            elseif ($_GET['page']=="logout") {
-              session_destroy();
-              echo "<script>location='login/';</script>";
-            }
+              if ($_GET['page'] === 'admin') {
+                  include 'admin.php';
+              } elseif ($_GET['page'] === 'tambahadmin') {
+                  include 'tambahadmin.php';
+              } elseif ($_GET['page'] === 'ubahadmin') {
+                  include 'ubahadmin.php';
+              } elseif ($_GET['page'] === 'barang') {
+                  include 'barang.php';
+              } elseif ($_GET['page'] === 'tambahbarang') {
+                  include 'tambahbarang.php';
+              } elseif ($_GET['page'] === 'ubahbarang') {
+                  include 'ubahbarang.php';
+              } elseif ($_GET['page'] === 'supplier') {
+                  include 'supplier.php';
+              } elseif ($_GET['page'] === 'tambahsupplier') {
+                  include 'tambahsupplier.php';
+              } elseif ($_GET['page'] === 'ubahsupplier') {
+                  include 'ubahsupplier.php';
+              } elseif ($_GET['page'] === 'pembelian') {
+                  include 'pembelian.php';
+              } elseif ($_GET['page'] === 'tambahpembelian') {
+                  include 'tambahpembelian.php';
+              } elseif ($_GET['page'] === 'barangpembelian') {
+                  include 'barangpembelian.php';
+              } elseif ($_GET['page'] === 'simpanbaranggudang') {
+                  include 'simpanbaranggudang.php';
+              } elseif ($_GET['page'] === 'penjualan') {
+                  include 'penjualan.php';
+              } elseif ($_GET['page'] === 'tambahpenjualan') {
+                  include 'tambahpenjualan.php';
+              } elseif ($_GET['page'] === 'laporanpenjualan') {
+                  include 'laporanpenjualan.php';
+              } elseif ($_GET['page'] === 'laporanpembelian') {
+                  include 'laporanpembelian.php';
+              } elseif ($_GET['page'] === 'laporanprofit') {
+                  include 'laporanprofit.php';
+              } elseif ($_GET['page'] === 'perusahaan') {
+                  include 'perusahaan.php';
+              } elseif ($_GET['page'] === 'logout') {
+                  session_destroy();
+                  echo "<script>location='login/';</script>";
+              }
+          } else {
+              include 'dashboard.php';
           }
-          else{
-            include 'dashboard.php';
-          }
-        ?>  
+?>
       </div>
     </div>
   </div>

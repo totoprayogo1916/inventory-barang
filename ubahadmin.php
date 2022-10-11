@@ -5,34 +5,34 @@
 				<h3 class="box-title" style="padding-top:0; margin-top:0; color:#f00;">Ubah Admin</h3>
 			</div>
 			<hr/>
-			<div class="box-body">	
+			<div class="box-body">
 				<?php
-						
-					if (isset($_POST['save'])) {
-						$admin->ubah_admin($_POST['email'],$_POST['pass'],$_POST['nama'],$_FILES['gambar'],$_GET['id']);
-						echo "<script>bootbox.alert('Data Terubah', function(){
+
+                    if (isset($_POST['save'])) {
+                        $admin->ubah_admin($_POST['email'], $_POST['pass'], $_POST['nama'], $_FILES['gambar'], $_GET['id']);
+                        echo "<script>bootbox.alert('Data Terubah', function(){
 							window.location = 'index.php?page=admin';
 						});</script>";
-					}
-					$adm = $admin->ambil_admin($_GET['id']);
-				?>	
+                    }
+                    $adm = $admin->ambil_admin($_GET['id']);
+				?>
 				<form method="POST" id="forminput" enctype="multipart/form-data">
 					<div class="form-group">
 						<label>Email</label>
-						<input type="email" class="form-control" name="email" id="formemail" value="<?php echo $adm['email']; ?>" placeholder="Masukan Email">
+						<input type="email" class="form-control" name="email" id="formemail" value="<?= $adm['email']; ?>" placeholder="Masukan Email">
 					</div>
 					<div class="form-group">
 						<label>Password</label>
-						<input type="password" class="form-control" name="pass" id="formpass" value="<?php echo $adm['password']; ?>" placeholder="Masukan Password">
+						<input type="password" class="form-control" name="pass" id="formpass" value="<?= $adm['password']; ?>" placeholder="Masukan Password">
 					</div>
 					<div class="form-group">
 						<label>Nama</label>
-						<input type="text" class="form-control" name="nama" id="formnama" value="<?php echo $adm['nama']; ?>" placeholder="Masukan Nama">
+						<input type="text" class="form-control" name="nama" id="formnama" value="<?= $adm['nama']; ?>" placeholder="Masukan Nama">
 					</div>
 					<div class="form-group">
 						<label>Gambar</label>
-						<img src="gambar_admin/<?php echo $adm['gambar']; ?>" width="50" class="img-responsive">
-						
+						<img src="gambar_admin/<?= $adm['gambar']; ?>" width="50" class="img-responsive">
+
 						<input type="file" class="form-control" name="gambar" id="formgambar">
 					</div>
 					<button id="formbtn" class="btn btn-primary" name="save"><i class="fa fa-save"></i> Simpan</button>
@@ -56,7 +56,7 @@
 		else{
 			var div = $('#'+id).closest('div');
 			div.removeClass("has-error has-feedback");
-			return true;	
+			return true;
 		}
 	}
 	$(document).ready(function(){

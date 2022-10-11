@@ -19,24 +19,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php  
+                            <?php
                                 $pem = $pembelian->tampil_barang_pembelian();
-                                foreach ($pem as $index => $data) {
-                            ?>
+
+                            foreach ($pem as $index => $data) {
+                                ?>
                             <tr class="odd gradeX">
-                                <td><?php echo $index + 1; ?></td>
-                                <td><?php echo $data['nama_barang_beli']; ?></td>
-                                <td><?php echo $data['satuan']; ?></td>
-                                <td><?php echo number_format($data['harga_beli']); ?></td>
-                                <td><?php echo $data['item']; ?></td>
+                                <td><?= $index + 1; ?></td>
+                                <td><?= $data['nama_barang_beli']; ?></td>
+                                <td><?= $data['satuan']; ?></td>
+                                <td><?= number_format($data['harga_beli']); ?></td>
+                                <td><?= $data['item']; ?></td>
                                 <td>
-                                    <a href="index.php?page=simpanbaranggudang&kdbl=<?php echo $data['kd_barang_beli']; ?>" class="btn btn-success btn-xs"><i class="fa fa-download"></i> Masukan Ke Gudang</button>
+                                    <a href="index.php?page=simpanbaranggudang&kdbl=<?= $data['kd_barang_beli']; ?>" class="btn btn-success btn-xs"><i class="fa fa-download"></i> Masukan Ke Gudang</button>
                                 </td>
                             </tr>
                             <?php } ?>
                         </tbody>
                     </table>
-                </div>   
+                </div>
             </div>
         </div>
         <!--End Advanced Tables -->

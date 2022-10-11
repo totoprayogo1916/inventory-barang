@@ -19,25 +19,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php  
+                            <?php
                                 $pen = $penjualan->tampil_penjualan();
-                                foreach ($pen as $index => $data) {
-                                    $jumlahb = $penjualan->hitung_item_penjualan($data['kd_penjualan']);
-                            ?>
+
+                            foreach ($pen as $index => $data) {
+                                $jumlahb = $penjualan->hitung_item_penjualan($data['kd_penjualan']);
+                                ?>
                             <tr class="odd gradeX">
-                                <td><?php echo $index + 1; ?></td>
-                                <td><?php echo $data['kd_penjualan']; ?></td>
-                                <td><?php echo $data['tgl_penjualan']; ?></td>
-                                <td><?php echo $jumlahb['jumlah']; ?></td>
-                                <td>Rp. <?php echo number_format($data['total_penjualan']); ?></td>
+                                <td><?= $index + 1; ?></td>
+                                <td><?= $data['kd_penjualan']; ?></td>
+                                <td><?= $data['tgl_penjualan']; ?></td>
+                                <td><?= $jumlahb['jumlah']; ?></td>
+                                <td>Rp. <?= number_format($data['total_penjualan']); ?></td>
                                 <td>
-                                    <a href="nota/cetakdetailpenjualan.php?kdpenjualan=<?php echo $data['kd_penjualan']; ?>" target="_BLANK" class="btn btn-info btn-xs"><i class="fa fa-search"></i> Detail</a>
+                                    <a href="nota/cetakdetailpenjualan.php?kdpenjualan=<?= $data['kd_penjualan']; ?>" target="_BLANK" class="btn btn-info btn-xs"><i class="fa fa-search"></i> Detail</a>
                                 </td>
                             </tr>
                             <?php } ?>
                         </tbody>
                     </table>
-                </div>   
+                </div>
             </div>
         </div>
         <!--End Advanced Tables -->

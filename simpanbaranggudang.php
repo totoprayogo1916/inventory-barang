@@ -1,11 +1,11 @@
-<?php  
-    if (isset($_POST['save'])) {
-        $barang->simpan_barang_gudang($_POST['kdbarang'],$_POST['hargaj'],$_GET['kdbl']);
-        echo "<script>bootbox.alert('Data Berhasil Di Tambahkan!', function(){
+<?php
+if (isset($_POST['save'])) {
+    $barang->simpan_barang_gudang($_POST['kdbarang'], $_POST['hargaj'], $_GET['kdbl']);
+    echo "<script>bootbox.alert('Data Berhasil Di Tambahkan!', function(){
 				window.location = 'index.php?page=barangpembelian';
 			});</script>";
-    }
-	$bel = $barang->ambil_barangpem($_GET['kdbl']);
+}
+$bel = $barang->ambil_barangpem($_GET['kdbl']);
 ?>
 <div class="row">
 	<div class="col-md-12">
@@ -14,7 +14,7 @@
 				<h3 class="box-title" style="padding-top:0; margin-top:0; color:#f00;">Simpan Barang Ke Gudang</h3>
 			</div>
 			<hr/>
-			<div class="box-body">	
+			<div class="box-body">
 				<form method="POST" id="forminput" enctype="multipart/form-data">
 					<div class="form-group">
 						<label>Kode Barang</label>
@@ -23,7 +23,7 @@
 					</div>
 					<div class="form-group">
 						<label>Harga Beli</label>
-						<input type="text" class="form-control" id="hargaj" readonly="true" value="<?php echo $bel['harga_beli']; ?>">
+						<input type="text" class="form-control" id="hargaj" readonly="true" value="<?= $bel['harga_beli']; ?>">
 					</div>
 					<div class="form-group">
 						<label>Harga Jual</label>
@@ -74,7 +74,7 @@
 		else{
 			var div = $('#'+id).closest('div');
 			div.removeClass("has-error has-feedback");
-			return true;	
+			return true;
 		}
 	}
 	$(document).ready(function(){

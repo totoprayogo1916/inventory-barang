@@ -1,8 +1,8 @@
-<?php  
-    if (isset($_GET['hapus'])) {
-        $pembelian->hapus_pembelian($_GET['hapus']);
-        echo "<script>location='index.php?page=pembelian';</script>";
-    }
+<?php
+if (isset($_GET['hapus'])) {
+    $pembelian->hapus_pembelian($_GET['hapus']);
+    echo "<script>location='index.php?page=pembelian';</script>";
+}
 
 ?>
 <div class="row">
@@ -28,36 +28,37 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php  
+                            <?php
                                 $pem = $pembelian->tampil_pembelian();
-                                foreach ($pem as $index => $data) {
-                                    $jumlahb = $pembelian->hitung_item_pembelian($data['kd_pembelian']);
-                            ?>
+
+foreach ($pem as $index => $data) {
+    $jumlahb = $pembelian->hitung_item_pembelian($data['kd_pembelian']);
+    ?>
                             <tr class="odd gradeX">
-                                <td><?php echo $index + 1; ?></td>
-                                <td><?php echo $data['kd_pembelian']; ?></td>
-                                <td><?php echo $data['tgl_pembelian']; ?></td>
-                                <td><?php echo $data['kd_supplier']; ?></td>
-                                <td><?php echo $data['nama_supplier']; ?></td>
-                                <td><?php echo $jumlahb['jumlah']; ?></td>
-                                <td>Rp. <?php echo number_format($data['total_pembelian']); ?></td>
+                                <td><?= $index + 1; ?></td>
+                                <td><?= $data['kd_pembelian']; ?></td>
+                                <td><?= $data['tgl_pembelian']; ?></td>
+                                <td><?= $data['kd_supplier']; ?></td>
+                                <td><?= $data['nama_supplier']; ?></td>
+                                <td><?= $jumlahb['jumlah']; ?></td>
+                                <td>Rp. <?= number_format($data['total_pembelian']); ?></td>
                                 <td>
-                                    <a href="nota/cetakdetailpembelian.php?kdpembelian=<?php echo $data['kd_pembelian']; ?>" target="_BLANK" class="btn btn-info btn-xs"><i class="fa fa-search"></i> Detail</a>
-                                    
-                                    <?php 
-                                    $cek = $pembelian->cek_hapuspembelian($data['kd_pembelian']);
-                                    if ($cek === true): ?>
-                                    <a href="index.php?page=pembelian&hapus=<?php echo $data['kd_pembelian']; ?>" class="btn btn-danger btn-xs" id="alertHapus"><i class="fa fa-trash"></i> Hapus</a>                                        
+                                    <a href="nota/cetakdetailpembelian.php?kdpembelian=<?= $data['kd_pembelian']; ?>" target="_BLANK" class="btn btn-info btn-xs"><i class="fa fa-search"></i> Detail</a>
+
+                                    <?php
+            $cek = $pembelian->cek_hapuspembelian($data['kd_pembelian']);
+    if ($cek === true): ?>
+                                    <a href="index.php?page=pembelian&hapus=<?= $data['kd_pembelian']; ?>" class="btn btn-danger btn-xs" id="alertHapus"><i class="fa fa-trash"></i> Hapus</a>
                                     <?php endif ?>
                                     <?php if ($cek === false): ?>
-                                    <a href="index.php?page=pembelian&hapus=<?php echo $data['kd_pembelian']; ?>" class="btn btn-danger btn-xs" id="alertHapus" disabled="disabled"><i class="fa fa-trash"></i> Hapus</a>
+                                    <a href="index.php?page=pembelian&hapus=<?= $data['kd_pembelian']; ?>" class="btn btn-danger btn-xs" id="alertHapus" disabled="disabled"><i class="fa fa-trash"></i> Hapus</a>
                                     <?php endif ?>
                                 </td>
                             </tr>
                             <?php } ?>
                         </tbody>
                     </table>
-                </div>   
+                </div>
             </div>
         </div>
         <!--End Advanced Tables -->
